@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="TestStand.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestStand"
+    xmlns:controls="using:TestStand.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Default background (if the one from Bing wasn't loaded for some reason) -->
+        <Image Source="/Resources/Images/Background/bg.jpg" Stretch="UniformToFill"/>
+        <!-- Daily Bing backgorund -->
+        <Image x:Name="BingImage" Stretch="UniformToFill"/>
+        
+        <!-- Bluring control -->
+        <controls:BackDrop BlurAmount="10"/>
+        <!-- Background overlay -->
+        <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.7"/>
+        
+        <Frame x:Name="ContentFrame" x:FieldModifier="public"/>
+    </Grid>
+</Page>

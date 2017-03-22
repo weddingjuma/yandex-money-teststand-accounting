@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="TestStand.View.HistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:TestStand.ViewModel"
+    xmlns:model="using:TestStand.Model"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModel:HistoryViewModel />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding History}"
+                  SelectionMode="None"
+                  Grid.Row="0">
+            <ListView.Header>
+                <Grid Padding="12,0,12,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                               Grid.Column="0"
+                               Text="Date" HorizontalAlignment="Left"/>
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                               Grid.Column="1"
+                               Text="Action" />
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                               Grid.Column="2" 
+                               Text="First name"/>
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                               Grid.Column="3" 
+                               Text="Model"/>
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                               Grid.Column="4" 
+                               Text="Place number"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TextBlockStyle}"
+                                   Grid.Column="0" HorizontalAlignment="Left"
+                                   Text="{Binding HistoryEntry.Date, Converter={StaticResource DateTimeConverter}, ConverterParameter=g, ConverterLanguage=ru}" />
+                        <TextBlock Style="{StaticResource TextBlockStyle}"
+                                   Grid.Column="1"
+                                   Text="{Binding HistoryEntry.Action}" />
+                        <TextBlock Style="{StaticResource TextBlockStyle}"
+                                   Grid.Column="2" 
+                                   Text="{Binding Employee.FirstName}"/>
+                        <TextBlock Style="{StaticResource TextBlockStyle}"
+                                   Grid.Column="3" 
+                                   Text="{Binding Device.Model}"/>
+                        <TextBlock Style="{StaticResource TextBlockStyle}"
+                                   Grid.Column="4" 
+                                   Text="{Binding Device.PlaceNumber}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Command="{Binding GoBackCommand}"                       
+                Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                Grid.Row="1"
+                Width="270"
+                Margin="20"
+                HorizontalAlignment="Center"
+                Style="{StaticResource CommonButtonStyle}"
+                Content="ВЕРНУТЬСЯ"/>
+    </Grid>
+</Page>

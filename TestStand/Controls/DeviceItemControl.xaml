@@ -1,0 +1,83 @@
+﻿<UserControl
+    x:Class="TestStand.Controls.DeviceItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestStand.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="600"
+    x:Name="rootElement">
+
+    <Grid>
+        <RelativePanel Padding="10,6">
+            <BitmapIcon x:Name="ImageIcon" Margin="0,5,10,0"
+                   Height="16" Opacity="0.4"
+                   UriSource="{x:Bind Device.Type, Mode=OneWay, Converter={StaticResource DeviceTypeToIconConverter}}"
+                   RelativePanel.AlignTopWithPanel="True">
+                
+            </BitmapIcon>
+
+            <StackPanel x:Name="TitlePanel" RelativePanel.AlignVerticalCenterWithPanel="True"
+                        RelativePanel.RightOf="ImageIcon">
+                <TextBlock Text="{x:Bind Device.Model, Mode=OneWay}" FontSize="14" FontWeight="SemiLight"/>
+                <TextBlock FontSize="11" Opacity="0.4" Margin="0,0,0,0">
+                        <Run Text="{x:Bind Device.OsVersion, Mode=OneWay}"/>
+                        <Run Text=" • "/>
+                        <Run Text="{x:Bind Device.ScreenSize, Mode=OneWay}"/>
+                        <Run Text=" • "/>
+                        <Run Text="{x:Bind Device.ScreenResolution, Mode=OneWay}"/>
+                </TextBlock>
+            </StackPanel>
+
+            <Grid Margin="0,0,40,0" 
+                  Visibility="{x:Bind ShowEmployee, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  RelativePanel.AlignVerticalCenterWithPanel="True" 
+                  RelativePanel.LeftOf="PlaceBlock">
+                
+                <StackPanel x:Name="EmployeeBlock"
+                        MaxWidth="200"
+                        Visibility="{x:Bind Device.EmployeeName, Mode=OneWay, Converter={StaticResource IsEmptyToVisibilityConverter}}">
+
+                    <TextBlock x:Name="EmployeeName" 
+                           FontSize="14" FontWeight="SemiLight"
+                           TextAlignment="Center"
+                           MaxLines="2"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
+                           Text="{x:Bind Device.EmployeeName, Mode=OneWay}"/>
+
+                    <TextBlock x:Name="Date" 
+                           FontSize="11"
+                           TextAlignment="Right"
+                           Text="{x:Bind Device.TakenDate, Mode=OneWay, Converter={StaticResource DateTimeConverter}, ConverterParameter='dd.MM.yy hh:mm'}" 
+                           Typography.Capitals="SmallCaps"
+                           Opacity="0.4"/>
+                </StackPanel>
+
+                <Border x:Name="EmptyEmployee" Background="#02B400"
+                        Visibility="{x:Bind Device.EmployeeName, Mode=OneWay, Converter={StaticResource IsEmptyToVisibilityConverter}, ConverterParameter=True}"
+                        Padding="8,2,8,4" CornerRadius="10">
+                    <TextBlock
+                       Text="свободен"
+                       FontSize="10" FontWeight="SemiBold"
+                       Foreground="White"/>
+                </Border>
+            </Grid>
+
+            <StackPanel x:Name="PlaceBlock"
+                        RelativePanel.AlignVerticalCenterWithPanel="True" 
+                        RelativePanel.AlignRightWithPanel="True"
+                        Margin="0,0,0,0">
+
+                <TextBlock x:Name="PlaceLabel" FontSize="7" Text="МЕСТО" TextAlignment="Center" Typography.Capitals="SmallCaps"
+                        Opacity="0.4"/>
+
+                <TextBlock x:Name="PlaceNumber" Opacity="0.8" TextAlignment="Center" Margin="0,-5,0,0"
+                        FontSize="24" Text="{x:Bind Device.PlaceNumber, Mode=OneWay}" FontWeight="Light"/>
+
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</UserControl>

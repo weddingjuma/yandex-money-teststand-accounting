@@ -1,0 +1,203 @@
+﻿<Page
+    x:Class="TestStand.View.DeviceHistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:TestStand.ViewModel"
+    xmlns:controls="using:TestStand.Controls"
+    xmlns:model="using:TestStand.Model"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <viewModel:DeviceHistoryViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <DataTemplate x:Key="DeviceHistoryTemplate">
+            <controls:DeviceItemControl Device="{Binding}" ShowEmployee="False"/>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="HistoryCollectionSource" Source="{Binding HistoryGroups}" ItemsPath="Items" IsSourceGrouped="True"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Background="Transparent" x:FieldModifier="private" x:Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition />
+                <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.8" Grid.Column="0" 
+                       Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+
+            <!-- Left column -->
+            <Grid Grid.Column="0" Grid.Row="1"
+                  Width="320" Margin="30,0,30,0"
+                  RequestedTheme="Light"
+                  CornerRadius="10"
+                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- device info -->
+                <StackPanel Grid.Row="0" Margin="20">
+                    <TextBlock Text="{Binding Device.Model}"
+                                FontSize="40"
+                                HorizontalAlignment="Center"
+                                Margin="10,12,10,30"
+                                FontWeight="SemiLight"
+                                TextAlignment="Center"
+                                TextTrimming="CharacterEllipsis"
+                                Opacity="0.7"/>
+                    <TextBlock Text="ВЕРСИЯ ОС"
+                                FontSize="10" 
+                                Opacity="0.6" 
+                                FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Device.OsVersion}"
+                                FontSize="16" 
+                                FontWeight="SemiLight"
+                                Margin="0,0,0,20"/>
+                    <TextBlock Text="ScreenSize"
+                                FontSize="10" 
+                                Opacity="0.6" 
+                                FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Device.ScreenSize}"
+                                FontSize="16" 
+                                FontWeight="SemiLight"
+                                Margin="0,0,0,20"/>
+                    <TextBlock Text="ScreenResolution"
+                                FontSize="10" 
+                                Opacity="0.6" 
+                                FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Device.ScreenResolution}"
+                                FontSize="16" 
+                                FontWeight="SemiLight"
+                                Margin="0,0,0,20"/>
+                    <TextBlock Text="IsContactlessPaymentsSupported"
+                                FontSize="10" 
+                                Opacity="0.6" 
+                                FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Device.IsContactlessPaymentsSupported}"
+                                FontSize="16" 
+                                FontWeight="SemiLight"
+                                Margin="0,0,0,20"/>
+                    <TextBlock Text="PhoneNumber"
+                                FontSize="10" 
+                                Opacity="0.6" 
+                                FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Device.PhoneNumber}"
+                                FontSize="16" 
+                                FontWeight="SemiLight"
+                                Margin="0,0,0,20"/>
+                </StackPanel>
+                    
+                <RelativePanel Grid.Row="1">
+                    <TextBlock Text="МЕСТО"
+                               FontSize="10" 
+                               Opacity="0.6" 
+                               FontWeight="SemiBold"
+                               RelativePanel.Above="PlaceId"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True"/>                               
+                    <TextBlock x:Name="PlaceId"
+                               Text="{Binding Device.PlaceNumber}"
+                               FontSize="40"
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                    <RelativePanel x:Name="DeviceOnEmployee"
+                                   Margin="0,30,0,0"
+                                   RelativePanel.Below="PlaceId"
+                                   RelativePanel.AlignHorizontalCenterWithPanel="True">
+                        <Ellipse x:Name="PhotoOfEmployee"
+                                 Margin="0,0,10,0"
+                                 Width="50"                         
+                                 Height="50">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding EmployeePhotoSource}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock x:Name="TakenDate"
+                                   FontSize="10" 
+                                   Opacity="0.6" 
+                                   FontWeight="SemiBold"
+                                   RelativePanel.RightOf="PhotoOfEmployee"
+                                   RelativePanel.AlignTopWith="PhotoOfEmployee">
+                            <Run Text="ВЗЯЛ"/>
+                            <Run Text="{Binding Device.TakenDate}"/>
+                        </TextBlock>
+                        <TextBlock FontSize="20"
+                                   FontWeight="SemiLight"
+                                   TextAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
+                                   Opacity="0.7"
+                                   RelativePanel.RightOf="PhotoOfEmployee"
+                                   RelativePanel.Below="TakenDate"
+                                   Text="{Binding Device.EmployeeName}"/>
+                    </RelativePanel>
+                </RelativePanel>
+            </Grid>
+
+            <!-- Right column -->
+            <Grid Grid.Column="2" Grid.RowSpan="3">
+
+            </Grid>
+
+
+            <!-- Middle column -->
+            <Grid Grid.Column="1" Grid.Row="1"
+                  Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <StackPanel x:Name="EmployeeWithoutDevices"
+                                Visibility="{Binding History, Converter={StaticResource IsEmptyToVisibilityConverter},ConverterParameter=True}"
+                                VerticalAlignment="Center"
+                                Margin="10,-60,10,0">
+                        <TextBlock Text="Этот девайс еще никто не брал" FontSize="16" FontWeight="SemiLight"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+
+                    <ListView ItemsSource="{Binding History}"
+                              Grid.Column="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" HorizontalAlignment="Left"
+                                               Text="{Binding HistoryEntry.Date, Converter={StaticResource DateTimeConverter}, ConverterParameter=g, ConverterLanguage=ru}" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding HistoryEntry.Action}" />
+                                    <TextBlock Grid.Column="2" 
+                                               Text="{Binding Employee.FirstName}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+ 
+                <Button Command="{Binding GoBackCommand}"                       
+                        Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                        Grid.Row="1"
+                        Width="270"
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource CommonButtonStyle}"
+                        Content="ВЕРНУТЬСЯ"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

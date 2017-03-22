@@ -1,0 +1,31 @@
+﻿<application:JupiterApp
+    x:Class="TestStand.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:application="using:Jupiter.Application"
+    xmlns:commonConverters="using:Jupiter.Converters"
+    xmlns:appConverters="using:TestStand.Converters"
+    RequestedTheme="Dark">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Brushes.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/LoadingIndicatorStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/ListViewStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <commonConverters:IsEmptyToVisibilityConverter x:Key="IsEmptyToVisibilityConverter"/>
+            <commonConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <commonConverters:DateTimeConverter x:Key="DateTimeConverter"/>
+            <commonConverters:StringToUpperConverter x:Key="StringToUpperConverter"/>
+
+            <appConverters:DeviceTypeToIconConverter x:Key="DeviceTypeToIconConverter"
+                                                     PhoneIconPath="/Resources/Images/Devices/device-phone-icon.png"
+                                                     TabletIconPath="/Resources/Images/Devices/device-tablet-icon.png"
+                                                     WearableIconPath="/Resources/Images/Devices/device-watch-icon.png"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</application:JupiterApp>
+

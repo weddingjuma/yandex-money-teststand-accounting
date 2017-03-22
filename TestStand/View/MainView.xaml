@@ -1,0 +1,84 @@
+﻿<Page
+    x:Class="TestStand.View.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:TestStand.ViewModel"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <viewModel:MainViewModel />
+    </Page.DataContext>
+
+    <RelativePanel>
+        <UserControl IsTabStop="True"/>
+
+        <TextBlock Text="ДЛЯ НАЧАЛА РАБОТЫ" Margin="0,0,0,10" FontSize="16" FontWeight="SemiBold"
+                   Opacity="0.7" CharacterSpacing="50"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   RelativePanel.Above="WelcomeTitle"/>
+
+        <TextBlock x:Name="WelcomeTitle"  Text="Приложите ваш пропуск" Margin="0,0,0,100" FontSize="36"
+                   Opacity="1" FontWeight="SemiLight"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   RelativePanel.Above="HintBox"/>
+
+        <StackPanel x:Name="HintBox"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <Image Height="140" Source="/Resources/Images/passcard.png"/>
+            <Image Height="32" Source="/Resources/Images/arrow.png" Margin="40,0,40,0"/>
+            <Image Height="140" Source="/Resources/Images/passreader.png"/>
+        </StackPanel>
+
+        <Grid x:Name="SearchBox" Margin="0,0,0,40"
+              RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <TextBox 
+                 PlaceholderText="Найти устройство" IsReadOnly="True" Style="{StaticResource MainSearchBoxStyle}"
+                 GotFocus="SearchBox_GotFocus"/>
+        </Grid>
+
+        <Button x:Name="DevicesButton" Command="{Binding GoToDevicesCommand}"
+                Margin="40,2,0,0"
+                Style="{StaticResource SimpleButtonStyle}"
+                RelativePanel.RightOf="SearchBox" RelativePanel.AlignTopWith="SearchBox">
+            <RelativePanel>
+                <Image x:Name="DevicesIcon" Source="/Resources/Images/devices.png"
+                       Height="30"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                <TextBlock x:Name="DevicesLabel" Text="ВСЕ УСТРОЙСТВА"
+                           TextAlignment="Center" FontWeight="SemiBold"
+                           FontSize="10"
+                           Margin="0,7,0,0"
+                           RelativePanel.Below="DevicesIcon"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True"/>
+            </RelativePanel>
+        </Button>
+        <Button Command="{Binding GoToHistoryCommand}"
+                Margin="40,2,0,0"
+                Style="{StaticResource SimpleButtonStyle}"
+                RelativePanel.RightOf="DevicesButton" RelativePanel.AlignTopWith="SearchBox">
+            <RelativePanel>
+                <Image x:Name="HistoryIcon" Source="/Resources/Images/history.png"
+                       Height="30"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                <TextBlock x:Name="HistoryLabel" Text="ИСТОРИЯ"
+                           TextAlignment="Center" FontWeight="SemiBold"
+                           FontSize="10"
+                           Margin="0,7,0,0"
+                           RelativePanel.Below="HistoryIcon"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True"/>
+            </RelativePanel>
+        </Button>
+
+        <TextBlock Text="{Binding AppVersion}"
+                   TextAlignment="Right"
+                   Margin="0,0,10,10"
+                   FontSize="12" Opacity="0.4"
+                   RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+    </RelativePanel>
+</Page>

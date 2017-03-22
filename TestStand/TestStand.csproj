@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{8C18A74C-52EE-432D-8886-8F3D0CDD582F}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestStand</RootNamespace>
+    <AssemblyName>TestStand</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>TestStand_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>F5683CCC2A45835DBC3A55B189A76205F1F8D28D</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;SDKVERSION_14393</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;SDKVERSION_14393</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppConst.cs" />
+    <Compile Include="Controls\ActionFeedbackButton.cs" />
+    <Compile Include="Controls\Backdrop.cs" />
+    <Compile Include="Controls\Barcode\QrCaptureAreaOverlayControl.xaml.cs">
+      <DependentUpon>QrCaptureAreaOverlayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Barcode\QrScannerOverlayControl.xaml.cs">
+      <DependentUpon>QrScannerOverlayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeviceItemControl.xaml.cs">
+      <DependentUpon>DeviceItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoadingIndicator.cs" />
+    <Compile Include="Controls\Popup.xaml.cs">
+      <DependentUpon>Popup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SurfaceLoader.cs" />
+    <Compile Include="Converters\DeviceTypeToIconConverter.cs" />
+    <Compile Include="Enum\DeviceAction.cs" />
+    <Compile Include="Enum\DeviceFamily.cs" />
+    <Compile Include="Enum\DeviceType.cs" />
+    <Compile Include="Ioc.cs" />
+    <Compile Include="Model\DeviceGroup.cs" />
+    <Compile Include="Model\HistoryGroup.cs" />
+    <Compile Include="Services\BingImageService.cs" />
+    <Compile Include="Services\ExtensionsService.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\UserTimeoutViewModel.cs" />
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DeviceEmployeeEntry.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Device.cs" />
+    <Compile Include="Model\HistoryDeviceEmployeeEntry.cs" />
+    <Compile Include="Model\HistoryEntry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BackupDbService.cs" />
+    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\EmailNotificationService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\HistoryService.cs" />
+    <Compile Include="Services\LogOutService.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\QrCodeScanner.cs" />
+    <Compile Include="Utils\SQLite\SQLite.cs" />
+    <Compile Include="Utils\SQLite\SQLiteAsync.cs" />
+    <Compile Include="ViewModel\DeviceHistoryViewModel.cs" />
+    <Compile Include="ViewModel\HistoryViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\DevicesViewModel.cs" />
+    <Compile Include="ViewModel\ScannerViewModel.cs" />
+    <Compile Include="View\DevicesView.xaml.cs">
+      <DependentUpon>DevicesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeviceHistoryView.xaml.cs">
+      <DependentUpon>DeviceHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistoryView.xaml.cs">
+      <DependentUpon>HistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScannerView.xaml.cs">
+      <DependentUpon>ScannerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserTimeoutView.xaml.cs">
+      <DependentUpon>UserTimeoutView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Assets\okey.scale-100.png" />
+    <Content Include="Assets\okey.scale-200.png" />
+    <Content Include="Assets\okey.scale-400.png" />
+    <Content Include="Assets\qr-code.png" />
+    <Content Include="Assets\SpeechOff.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\arrow.scale-100.png" />
+    <Content Include="Resources\Images\arrow.scale-200.png" />
+    <Content Include="Resources\Images\arrow.scale-400.png" />
+    <Content Include="Resources\Images\Background\bg.jpg" />
+    <Content Include="Resources\Images\devices.scale-100.png" />
+    <Content Include="Resources\Images\devices.scale-200.png" />
+    <Content Include="Resources\Images\devices.scale-400.png" />
+    <Content Include="Resources\Images\Devices\device-phone-icon.scale-100.png" />
+    <Content Include="Resources\Images\Devices\device-phone-icon.scale-200.png" />
+    <Content Include="Resources\Images\Devices\device-phone-icon.scale-400.png" />
+    <Content Include="Resources\Images\Devices\device-tablet-icon.scale-100.png" />
+    <Content Include="Resources\Images\Devices\device-tablet-icon.scale-200.png" />
+    <Content Include="Resources\Images\Devices\device-tablet-icon.scale-400.png" />
+    <Content Include="Resources\Images\Devices\device-watch-icon.scale-100.png" />
+    <Content Include="Resources\Images\Devices\device-watch-icon.scale-200.png" />
+    <Content Include="Resources\Images\Devices\device-watch-icon.scale-400.png" />
+    <Content Include="Resources\Images\history.scale-100.png" />
+    <Content Include="Resources\Images\history.scale-200.png" />
+    <Content Include="Resources\Images\history.scale-400.png" />
+    <Content Include="Resources\Images\Noise.jpg" />
+    <Content Include="Resources\Images\passcard.scale-100.png" />
+    <Content Include="Resources\Images\passcard.scale-200.png" />
+    <Content Include="Resources\Images\passcard.scale-400.png" />
+    <Content Include="Resources\Images\passreader.scale-100.png" />
+    <Content Include="Resources\Images\passreader.scale-200.png" />
+    <Content Include="Resources\Images\passreader.scale-400.png" />
+    <Content Include="Resources\Images\phone-back.scale-100.png" />
+    <Content Include="Resources\Images\phone-back.scale-200.png" />
+    <Content Include="Resources\Images\phone-back.scale-400.png" />
+    <Content Include="Resources\Images\phone-front.scale-100.png" />
+    <Content Include="Resources\Images\phone-front.scale-200.png" />
+    <Content Include="Resources\Images\phone-front.scale-400.png" />
+    <Content Include="Resources\Images\search.scale-100.png" />
+    <Content Include="Resources\Images\search.scale-200.png" />
+    <Content Include="Resources\Images\search.scale-400.png" />
+    <Content Include="TestStand.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="TestStand_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\phone.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\qrCode.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Controls\Barcode\QrCaptureAreaOverlayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Barcode\QrScannerOverlayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeviceItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Popup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\Styles\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\Styles\ListViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\LoadingIndicatorStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DevicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeviceHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ScannerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserTimeoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jupiter\Jupiter.UWP\Jupiter.UWP.csproj">
+      <Project>{51f9f331-1237-4d09-b8b7-eb00be730c19}</Project>
+      <Name>Jupiter.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LightBuzz.SMTP\LightBuzz.SMTP.csproj">
+      <Project>{4ad41344-ec85-41e4-81ab-29e5e45785f8}</Project>
+      <Name>LightBuzz.SMTP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.17.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

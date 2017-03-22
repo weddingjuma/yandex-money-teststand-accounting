@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="TestStand.View.UserTimeoutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestStand.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:TestStand.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:vm="using:TestStand.ViewModel"
+    mc:Ignorable="d"
+    x:Name="rootElement"
+    Loaded="rootElement_Loaded">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="LoadAnim">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase Exponent="6" EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(RenderTransform).ScaleX" Storyboard.TargetName="ContentPanel">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase Exponent="6" EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(RenderTransform).ScaleY" Storyboard.TargetName="ContentPanel">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase Exponent="6" EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="UnloadAnim">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPanel">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase Exponent="6" EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackDrop">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase Exponent="6" EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vm:UserTimeoutViewModel />
+    </UserControl.DataContext>
+    <Grid Background="Transparent">
+        <!-- Bluring control -->
+        <controls:BackDrop x:Name="BackDrop" BlurAmount="20"/>
+
+        <RelativePanel x:Name="ContentPanel" RenderTransformOrigin="0.5,0.5">
+            <RelativePanel.RenderTransform>
+                <ScaleTransform />
+            </RelativePanel.RenderTransform>
+
+
+            <UserControl IsTabStop="True"/>
+
+            <TextBlock Text="ДЛЯ ПРОДОЛЖЕНИЯ РАБОТЫ" Margin="0,0,0,10" FontSize="16" FontWeight="SemiBold"
+                   Opacity="0.7" CharacterSpacing="50"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   RelativePanel.Above="WelcomeTitle"/>
+
+            <TextBlock x:Name="WelcomeTitle"  Text="Приложите ваш пропуск" Margin="0,0,0,100" FontSize="36"
+                   Opacity="1" FontWeight="SemiLight"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   RelativePanel.Above="HintBox"/>
+
+            <StackPanel x:Name="HintBox"
+                    Orientation="Horizontal"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <Image Height="140" Source="/Resources/Images/passcard.png"/>
+                <Image Height="32" Source="/Resources/Images/arrow.png" Margin="40,0,40,0"/>
+                <Image Height="140" Source="/Resources/Images/passreader.png"/>
+            </StackPanel>
+
+            <StackPanel x:Name="TimerBox"
+                    Width="150"
+                    Margin="0,40,0,40"
+                    RelativePanel.Below="HintBox"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <TextBlock Text="ТЕКУЩАЯ СЕССИЯ ЗАВЕРШИТСЯ ЧЕРЕЗ"
+                       TextAlignment="Center"
+                       TextWrapping="WrapWholeWords"
+                       FontSize="12" FontWeight="SemiBold"
+                       Opacity="0.6" CharacterSpacing="50"/>
+                <TextBlock TextAlignment="Center"
+                           Margin="0,10,0,0" CharacterSpacing="60"
+                           Text="{Binding LeftTimeString}" 
+                           FontSize="24" FontWeight="SemiLight"/>
+            </StackPanel>
+
+            <Button Command="{Binding GoToMainViewCommand}"                       
+                Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                Grid.Row="2"
+                Width="270"
+                Margin="20,20,20,0"
+                HorizontalAlignment="Center"
+                Style="{StaticResource CommonButtonStyle}"
+                RelativePanel.Below="TimerBox"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                Content="ЗАВЕРШИТЬ"/>
+        </RelativePanel>
+    </Grid>
+</UserControl>
